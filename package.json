@@ -1,0 +1,32 @@
+{
+  "name": "clubs-management-system",
+  "version": "0.1.0",
+  "description": "This the Clubs Management System of Indian Institute of Information Technology, Raichur.",
+  "main": "next.config.js",
+  "author": "Koushikpuppala",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "update": "ncu -u && npm update && npm install"
+  },
+  "dependencies": {
+    "next": "12.1.4",
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
+  },
+  "devDependencies": {
+    "eslint": "8.12.0",
+    "eslint-config-next": "12.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codesoc-iiitraichur/clubs-management-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codesoc-iiitraichur/clubs-management-system/issues"
+  }
+}
