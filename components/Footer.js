@@ -9,10 +9,10 @@ const Footer = () => {
 		<>
 			{/* <!-- ======= Footer ======= --> */}
 			<footer id='footer'>
-				{/* <div class="footer-newsletter">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6">
+				{/* <div className="footer-newsletter">
+                    <div className="container">
+                        <div className="row justify-content-center">
+                            <div className="col-lg-6">
                                 <h4>Join Our Newsletter</h4>
                                 <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
                                 <form action="" method="post">
@@ -23,10 +23,10 @@ const Footer = () => {
                     </div>
                 </div> */}
 
-				<div class='footer-top'>
-					<div class='container'>
-						<div class='row'>
-							<div class='col-lg-3 col-md-6 footer-contact'>
+				<div className='footer-top'>
+					<div className='container'>
+						<div className='row'>
+							<div className='col-lg-3 col-md-6 footer-contact'>
 								<h3>IIIT Raichur</h3>
 								<p>
 									Indian Institute of Information Technology <br />
@@ -42,29 +42,31 @@ const Footer = () => {
 								</p>
 							</div>
 
-							<div class='col-lg-3 col-md-6 footer-links'>
+							<div className='col-lg-3 col-md-6 footer-links'>
 								<h4>Our Social Networks</h4>
-								<div class='social-links mt-3'>
-									<a href='https://twitter.com/IIITRaichur' class='twitter'>
-										<i class='bx bxl-twitter'></i>
+								<div className='social-links mt-3'>
+									<a href='https://twitter.com/IIITRaichur' className='twitter'>
+										<i className='bx bxl-twitter'></i>
 									</a>
-									<a href='https://www.facebook.com/iiitraichur' class='facebook'>
-										<i class='bx bxl-facebook'></i>
+									<a
+										href='https://www.facebook.com/iiitraichur'
+										className='facebook'>
+										<i className='bx bxl-facebook'></i>
 									</a>
 									<a
 										href='https://www.instagram.com/iiit_raichur/'
-										class='instagram'>
-										<i class='bx bxl-instagram'></i>
+										className='instagram'>
+										<i className='bx bxl-instagram'></i>
 									</a>
 									<a
 										href='https://www.youtube.com/channel/UC6aCBD8hLAJzg7V50CEcX3g'
-										class='youtube'>
-										<i class='bx bxl-youtube'></i>
+										className='youtube'>
+										<i className='bx bxl-youtube'></i>
 									</a>
 									<a
 										href='https://www.linkedin.com/showcase/indian-institute-of-information-technology-raichur/'
-										class='linkedin'>
-										<i class='bx bxl-linkedin'></i>
+										className='linkedin'>
+										<i className='bx bxl-linkedin'></i>
 									</a>
 								</div>
 							</div>
@@ -72,11 +74,11 @@ const Footer = () => {
 					</div>
 				</div>
 
-				<div class='container footer-bottom clearfix'>
-					{/* <div class="copyright">
+				<div className='container footer-bottom clearfix'>
+					{/* <div className="copyright">
                         &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
                     </div> */}
-					<div class='credits'>
+					<div className='credits'>
 						{/* <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
@@ -85,7 +87,6 @@ const Footer = () => {
 					</div>
 				</div>
 			</footer>
-			{/* <!-- End Footer --> */}
 		</>
 	)
 }

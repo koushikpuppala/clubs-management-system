@@ -3,22 +3,17 @@
 import { Test } from '../../database/models/Test'
 
 export default async function handler(req, res) {
-	const test = await Test.findOne({
-		where: {
-			id: 1,
-		},
-	})
-	const test1 = test.name ? test.name.split(',').map((item) => item.trim()) : []
-	test1[test1.length] = 'test'
-	await Test.update(
-		{
-			name: test1.join(', '),
-		},
-		{
-			where: {
-				id: 1,
-			},
-		}
-	)
+	const DateNow =
+		new Date().getFullYear() +
+		'-' +
+		(new Date().getMonth() + 1 > 10 ? '' : '0') +
+		(new Date().getMonth() + 1) +
+		'-' +
+		new Date().getDate() +
+		'T' +
+		new Date().getHours() +
+		':' +
+		new Date().getMinutes()
+	const test = await Test.findAll()
 	res.status(200).send(test)
 }

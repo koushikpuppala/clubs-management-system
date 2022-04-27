@@ -1,13 +1,12 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../index'
-import { v4 as uuidv4 } from 'uuid'
 
-export const StudentDetails = sequelize.define('student_details', {
+export const Students = sequelize.define('student_details', {
 	id: {
-		type: DataTypes.UUIDV4,
+		type: DataTypes.UUID,
 		allowNull: false,
 		primaryKey: true,
-		defaultValue: uuidv4(),
+		defaultValue: DataTypes.UUIDV4,
 	},
 	name: {
 		type: DataTypes.STRING,
@@ -21,6 +20,9 @@ export const StudentDetails = sequelize.define('student_details', {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
+	image: {
+		type: DataTypes.STRING,
+	},
 	batch: {
 		type: DataTypes.INTEGER,
 	},
@@ -28,9 +30,19 @@ export const StudentDetails = sequelize.define('student_details', {
 		type: DataTypes.BOOLEAN,
 		defaultValue: false,
 	},
-	club:{
-        type: DataTypes.ENUM,
-		values: ['Codesoc','Xposure','Finesse','NSO','NSS','EBSB','Electrogeeks','Finspiration','GDSC'],
+	club: {
+		type: DataTypes.ENUM,
+		values: [
+			'Codesoc',
+			'Xposure',
+			'Finesse',
+			'NSO',
+			'NSS',
+			'EBSB',
+			'Electrogeeks',
+			'Finspiration',
+			'GDSC',
+		],
 	},
 	secretary: {
 		type: DataTypes.BOOLEAN,
@@ -38,10 +50,34 @@ export const StudentDetails = sequelize.define('student_details', {
 	},
 	position: {
 		type: DataTypes.ENUM,
-		values: ['SciTech','Cultural','PR','Gensec1','Gensec2'],
+		values: ['SciTech', 'Cultural', 'PR', 'Gensec1', 'Gensec2'],
 	},
 	overall_admin: {
 		type: DataTypes.BOOLEAN,
 		defaultValue: false,
+	},
+	bio: {
+		type: DataTypes.STRING,
+	},
+	instagram: {
+		type: DataTypes.STRING,
+	},
+	linkedin: {
+		type: DataTypes.STRING,
+	},
+	facebook: {
+		type: DataTypes.STRING,
+	},
+	twitter: {
+		type: DataTypes.STRING,
+	},
+	phone: {
+		type: DataTypes.STRING,
+	},
+	github: {
+		type: DataTypes.STRING,
+	},
+	website: {
+		type: DataTypes.STRING,
 	},
 })

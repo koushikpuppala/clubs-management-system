@@ -5,15 +5,24 @@ import 'remixicon/fonts/remixicon.css'
 import 'aos/dist/aos.css'
 import 'swiper/css/bundle'
 import '../styles/globals.css'
+import '../styles/style.css'
 import { useEffect } from 'react'
 import { MainAction } from '../actions/Main'
+import { AuthProvider, AuthStateChange } from '../context'
+import { globalAccess } from '../context'
 
-function MyApp({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
 	useEffect(() => {
 		MainAction()
 	}, [])
 
-	return <Component {...pageProps} />
+	return (
+		<AuthProvider>
+			<AuthStateChange>
+				<Component {...pageProps} />
+			</AuthStateChange>
+		</AuthProvider>
+	)
 }
 
-export default MyApp
+export default App

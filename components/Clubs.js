@@ -1,23 +1,16 @@
-import { ClubsData } from '../data/clubs'
+import Image from 'next/image'
 
-const Clubs = () => {
+const Clubs = ({ clubs }) => {
 	return (
 		<>
-			{/* <!-- ======= Team Section ======= --> */}
 			<section id='clubs' className='team section-bg'>
 				<div className='container' data-aos='fade-up'>
 					<div className='section-title'>
 						<h2>Clubs</h2>
-						<p>
-							{/* Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
-							aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
-							quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
-							sit in iste officiis commodi quidem hic quas. */}
-						</p>
 					</div>
 
 					<div className='row'>
-						{ClubsData.map((club) => {
+						{clubs.map((club) => {
 							return (
 								<div className='col-lg-6 mt-3 mt-lg-0' key={club.id}>
 									<div
@@ -25,10 +18,13 @@ const Clubs = () => {
 										data-aos='zoom-in'
 										data-aos-delay='100'>
 										<div className='pic'>
-											<img
-												src={`/images/logo/${club.image}`}
+											<Image
+												layout='raw'
+												width={500}
+												height={500}
+												src={`/images/clubs/${club.image}`}
 												className='img-fluid'
-												alt=''
+												alt={club.name}
 											/>
 										</div>
 										<div className='member-info'>
@@ -38,49 +34,63 @@ const Clubs = () => {
 											<span>{club.about}</span>
 											<p>{club.description}</p>
 											<div className='social'>
-												{club.social.twitter ? (
-													<a href=''>
+												{club.twitter ? (
+													<a
+														href={`https://www.twitter.com/${club.twitter}`}
+														target='_blank'>
 														<i className='ri-twitter-fill'></i>
 													</a>
 												) : (
 													''
 												)}
-												{club.social.facebook ? (
-													<a href=''>
+												{club.facebook ? (
+													<a
+														href={`https://www.facebook.com/${club.facebook}`}
+														target='_blank'>
 														<i className='ri-facebook-fill'></i>
 													</a>
 												) : (
 													''
 												)}
-												{club.social.instagram ? (
-													<a href=''>
+												{club.instagram ? (
+													<a
+														href={`https://www.instagram.com/${club.instagram}`}
+														target='_blank'>
 														<i className='ri-instagram-fill'></i>
 													</a>
 												) : (
 													''
 												)}
-												{club.social.linkedin ? (
-													<a href=''>
+												{club.linkedin ? (
+													<a
+														href={`https://www.linkedin.com/company/${club.linkedin}`}
+														target='_blank'>
 														<i className='ri-linkedin-box-fill'></i>{' '}
 													</a>
 												) : (
 													''
 												)}
-												{club.social.youtube ? (
-													<a href=''>
+												{club.youtube ? (
+													<a
+														href={`https://www.youtube.com/channel/${club.youtube}`}
+														target='_blank'>
 														<i className='ri-youtube-fill'></i>{' '}
 													</a>
 												) : (
 													''
 												)}
-												{club.social.email ? (
-													<a href=''>
+												{club.email ? (
+													<a
+														href={`mailto:${club.email}`}
+														target='_blank'>
 														<i className='ri-mail-line'></i>{' '}
 													</a>
 												) : (
 													''
 												)}
-												<a href='' className='website'>
+												<a
+													href={`${club.name.toLowerCase()}`}
+													className='website'>
 													<i className='ri-global-line'></i>{' '}
 												</a>
 											</div>
