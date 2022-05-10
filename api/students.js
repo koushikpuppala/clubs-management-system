@@ -25,12 +25,18 @@ const StudentsAPI = async (req, res) => {
 			}
 		}
 	} else if (req.method === 'PUT') {
-		const students = await StudentSchema.update(req.body, {
+		
+		StudentSchema.update(req.body, {
 			where: {
 				id: req.query.id,
 			},
 		})
-		res.status(200).send(students)
+		const student = await StudentSchema.findOne({
+			where: {
+				id: req.query.id,
+			},
+		})
+		res.status(200).send(student)
 	} else if (req.method === 'DELETE') {
 		const students = await StudentSchema.destroy({
 			where: {

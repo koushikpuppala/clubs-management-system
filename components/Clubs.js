@@ -1,6 +1,14 @@
+import axios from 'axios'
 import Image from 'next/image'
 
 const Clubs = ({ clubs }) => {
+
+	const deleteClub = (id) => {
+		axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/clubs?id=${id}`).then(() => {
+			alert('Club Got Deleted')
+		})
+	}
+
 	return (
 		<>
 			<section id='clubs' className='team section-bg'>
@@ -33,6 +41,9 @@ const Clubs = ({ clubs }) => {
 											</a>
 											<span>{club.about}</span>
 											<p>{club.description}</p>
+											<button onClick={() => {
+												deleteClub(club.id)
+											}}>Delete CLub</button>
 											<div className='social'>
 												{club.twitter ? (
 													<a

@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+
 const ClubsTeam = ({ club, auth }) => {
 	const [coordinates, setCoordinates] = useState([])
 	useEffect(() => {

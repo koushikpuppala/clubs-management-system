@@ -1,22 +1,46 @@
+import axios from 'axios'
+import { useState } from 'react'
+import { withProtected } from '../context'
+
 const Test = () => {
+	const [state, setState] = useState({
+		image: null,
+	})
+
+	const handleChange = (e) => {
+		setState({
+			...state,
+			image: e.target.files[0],
+		})
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		const formData = new FormData()
+		formData.append('image', state.image)
+		formData.append('name', 'test.png')
+		axios
+			.post(`${process.env.NEXT_PUBLIC_BASE_URL}/test`, formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			})
+			.then((res) => {
+				console.log(res)
+			})
+			.catch((err) => {
+				console.log(err)
+				alert('Error while uploading file' + err)
+			})
+	}
+
 	return (
-		<div>
-			<h1>Test</h1>
-			<p>This is a test page</p>
-			<div class='form-group col-lg-3'>
-				<label class='label-control' for='id_start_datetime'>
-					Datetime picker
-				</label>
-				<div id='id_start_datetime' class='input-group date'>
-					<input
-						type='datetime-local'
-						class='form-control'
-						placeholder='MM/DD/YYYY hh:mm:ss'
-						required
-					/>
-				</div>
-			</div>
-		</div>
+		<>
+			<form onSubmit={handleSubmit}>
+				<input type='file' name='image' onChange={handleChange} />
+				<button type='submit'>Submit</button>
+			</form>
+		</>
 	)
 }
 

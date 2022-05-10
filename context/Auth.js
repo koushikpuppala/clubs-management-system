@@ -17,11 +17,11 @@ export const AuthProvider = (props) => {
 	const [students, setStudents] = useState([])
 
 	useEffect(() => {
-		axios.get('/api/clubs').then((res) => {
+		axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/clubs`).then((res) => {
 			setClubs(res.data)
 		})
 
-		axios.get('/api/students').then((res) => {
+		axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/students`).then((res) => {
 			console.log(res.data)
 			setStudents(res.data)
 		})
@@ -32,7 +32,7 @@ export const AuthProvider = (props) => {
 
 		students.map(async (student) => {
 			if (student.email !== user.email) {
-				axios.post('/api/students', {
+				axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/students`, {
 					id: user.uid,
 					name: user.displayName,
 					email: user.email,
@@ -40,7 +40,7 @@ export const AuthProvider = (props) => {
 					roll: user.email.split('@')[0].toUpperCase(),
 				})
 			} else {
-				axios.put(`/api/students?id=${user.uid}`, {
+				axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/students/${user.uid}`, {
 					name: user.displayName,
 					image: user.photoURL,
 					roll: user.email.split('@')[0].toUpperCase(),

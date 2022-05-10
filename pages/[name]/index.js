@@ -11,14 +11,19 @@ import { useEffect, useState } from 'react'
 import AddEvent from '../../layout/codesoc/AddEvent'
 
 const fetchData = async () => {
-	const result = await axios.get('http://localhost:3000/api/clubs')
+	const result = await axios.get('http://localhost:8080/clubs')
 	return result.data
 }
 
 const Clubspage = ({ club, auth }) => {
 	console.log(auth.students)
 	const [session, setSession] = useState(null)
+	const [events, setEvents] = useState([])
 	useEffect(() => {
+		axios.get(`http://localhost:8080/events?clubId=${club.id}`).then((res) => {
+			console.log(res.data)
+			setEvents(res.data)
+		})
 		auth.user
 			? auth.students.map((student) => {
 					if (student.email === auth.user.email) {
@@ -58,7 +63,7 @@ const Clubspage = ({ club, auth }) => {
 				</div>
 			</section>
 			<ClubsAbout club={club} auth={auth} />
-			<ClubsEvent />
+			<ClubsEvent events={events} />
 			<ClubsTeam club={club} auth={auth} />
 			<Footer />
 		</>
@@ -77,12 +82,17 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
 	const data = await fetchData()
+
+	const paths = data.map((club) => ({
+		params: {
+			name: club.name.toLowerCase(),
+		},
+	}))
+
+	console.log(paths)
+
 	return {
-		paths: data.map((club) => ({
-			params: {
-				name: club.name.toLowerCase(),
-			},
-		})),
+		paths,
 		fallback: false,
 	}
 }

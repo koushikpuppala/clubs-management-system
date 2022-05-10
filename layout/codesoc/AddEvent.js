@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 const AddEvent = ({ club }) => {
@@ -55,7 +55,7 @@ const AddEvent = ({ club }) => {
 		form.append('certificate', event.certificate)
 		form.append('image', event.image)
 
-		axios.post(`/api/events/${club.name.toLowerCase()}`, form).then(
+		axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/events`, form).then(
 			(res) => {
 				console.log(res.data)
 				alert('Event added successfully')
@@ -134,6 +134,85 @@ const AddEvent = ({ club }) => {
 								</div>
 
 								<div className='form-group form-floating'>
+									<textarea
+										type='text'
+										className='form-control'
+										name='details'
+										id='details'
+										onChange={handleChange}
+										defaultValue={event.details}
+										placeholder='Details'
+										rows={5}></textarea>
+									<label htmlFor='details'>Details</label>
+								</div>
+
+								<div className='row'>
+									<div className='form-group col-lg-4 form-floating'>
+										<input
+											type='datetime-local'
+											className='form-control'
+											name='start_date'
+											id='start_date'
+											onChange={handleChange}
+											defaultValue={event.start_date}
+											placeholder='Start Date'
+										/>
+										<label htmlFor='start_date'>Start Date</label>
+									</div>
+									<div className='form-group col-lg-4 form-floating'>
+										<input
+											type='datetime-local'
+											className='form-control'
+											name='reg_end_date'
+											id='reg_end_date'
+											defaultValue={event.reg_end_date}
+											onChange={handleChange}
+											placeholder='Registration End Date'
+										/>
+										<label htmlFor='reg_end_date'>Registration End Date</label>
+									</div>
+									<div className='form-group col-lg-4 form-floating'>
+										<input
+											type='datetime-local'
+											className='form-control'
+											name='end_date'
+											id='end_date'
+											defaultValue={event.end_date}
+											onChange={handleChange}
+											placeholder='End Date'
+										/>
+										<label htmlFor='end_date'>End Date</label>
+									</div>
+								</div>
+
+								<div className='form-group input-group'>
+									{/* <label for='formFile' className='form-label col-md-4'>
+										Default file input example
+									</label> */}
+									<div
+										className='input-group-text col-md-4'
+										style={{
+											borderRadius: '0% !important',
+											border: '0.25px solid #000',
+										}}>
+										Add Event Poster
+									</div>
+									<div className='col-md-8'>
+										<input
+											style={{
+												height: '100%',
+												border: '0.25px solid #000',
+											}}
+											className='form-control form-control-lg'
+											type='file'
+											id='image'
+											name='image'
+											onChange={handleImage}
+										/>
+									</div>
+								</div>
+
+								<div className='form-group form-floating'>
 									<input
 										type='text'
 										className='form-control'
@@ -157,19 +236,6 @@ const AddEvent = ({ club }) => {
 										placeholder='No of Prizes'
 									/>
 									<label htmlFor='prize_count'>Prize_count</label>
-								</div>
-
-								<div className='form-group form-floating'>
-									<textarea
-										type='text'
-										className='form-control'
-										name='details'
-										id='details'
-										onChange={handleChange}
-										defaultValue={event.details}
-										placeholder='Details'
-										rows={5}></textarea>
-									<label htmlFor='details'>Details</label>
 								</div>
 
 								<div
@@ -215,80 +281,18 @@ const AddEvent = ({ club }) => {
 										</div>
 									</fieldset>
 								</div>
-								<div className='form-group input-group'>
-									{/* <label for='formFile' className='form-label col-md-4'>
-										Default file input example
-									</label> */}
-									<div
-										className='input-group-text col-md-4'
-										style={{
-											borderRadius: '0% !important',
-											border: '0.25px solid #000',
-										}}>
-										Add Club Logo
-									</div>
-									<div className='col-md-8'>
-										<input
-											style={{
-												height: '100%',
-												border: '0.25px solid #000',
-											}}
-											className='form-control form-control-lg'
-											type='file'
-											id='image'
-											name='image'
-											onChange={handleImage}
-										/>
-									</div>
-								</div>
-								<div className='row'>
-									<div className='form-group col-lg-4 form-floating'>
-										<input
-											type='datetime-local'
-											className='form-control'
-											name='start_date'
-											id='start_date'
-											onChange={handleChange}
-											defaultValue={event.start_date}
-											placeholder='Start Date'
-										/>
-										<label htmlFor='start_date'>Start Date</label>
-									</div>
-									<div className='form-group col-lg-4 form-floating'>
-										<input
-											type='datetime-local'
-											className='form-control'
-											name='reg_end_date'
-											id='reg_end_date'
-											defaultValue={event.reg_end_date}
-											onChange={handleChange}
-											placeholder='Registration End Date'
-										/>
-										<label htmlFor='reg_end_date'>Registration End Date</label>
-									</div>
-									<div className='form-group col-lg-4 form-floating'>
-										<input
-											type='datetime-local'
-											className='form-control'
-											name='end_date'
-											id='end_date'
-											defaultValue={event.end_date}
-											onChange={handleChange}
-											placeholder='End Date'
-										/>
-										<label htmlFor='end_date'>End Date</label>
-									</div>
-								</div>
+
 								<div
 									className='modal-footer'
 									style={{
 										justifyContent: 'space-evenly',
 									}}>
 									<button
-										type='button'
+										type='submit'
 										className='btn btn-success'
+										data-bs-dismiss='modal'
 										onClick={handleSubmit}>
-										Create Club
+										Create Event
 									</button>
 								</div>
 							</form>

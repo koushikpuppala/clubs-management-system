@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../../index'
-import { v4 as uuidv4 } from 'uuid'
 
 export const CodeSoc = sequelize.define('codesoc_events', {
 	id: {

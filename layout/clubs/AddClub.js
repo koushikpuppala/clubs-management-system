@@ -1,4 +1,91 @@
+import axios from 'axios'
+import { useState } from 'react'
+import { withProtected } from '../../context'
+
 const AddClubs = () => {
+	const [club, setClub] = useState({
+		name: null,
+		coordinators: null,
+		about: null,
+		description: null,
+		motto: null,
+		twitter: null,
+		facebook: null,
+		instagram: null,
+		linkedin: null,
+		email: null,
+		youtube: null,
+		image: null,
+	})
+
+	const handleChange = (e) => {
+		setClub({
+			...club,
+			[e.target.name]: e.target.value === '' ? null : e.target.value,
+		})
+	}
+
+	const handleImage = (e) => {
+		setClub({
+			...club,
+			image: e.target.files[0],
+		})
+	}
+
+	const handleClear = () => {
+		setClub({
+			name: null,
+			coordinators: null,
+			about: null,
+			description: null,
+			motto: null,
+			twitter: null,
+			facebook: null,
+			instagram: null,
+			linkedin: null,
+			email: null,
+			youtube: null,
+			image: null,
+		})
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		if (
+			club.name === null ||
+			club.coordinators === null ||
+			club.about === null ||
+			club.description === null ||
+			club.email === null
+		) {
+			return alert('Please fill all the required fields')
+		} else {
+			const body = new FormData()
+			body.append('name', club.name)
+			body.append('coordinators', club.coordinators)
+			body.append('about', club.about)
+			body.append('description', club.description)
+			body.append('motto', club.motto)
+			body.append('twitter', club.twitter)
+			body.append('facebook', club.facebook)
+			body.append('instagram', club.instagram)
+			body.append('linkedin', club.linkedin)
+			body.append('email', club.email)
+			body.append('youtube', club.youtube)
+			body.append('image', club.image)
+			axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/clubs`, body).then(
+				(res) => {
+					console.log(res.data)
+					alert('Club added successfully')
+					window.location.reload()
+				},
+				(err) => {
+					console.log(err)
+					alert(`Something went wrong - ${err.message}`)
+				}
+			)
+		}
+	}
 	return (
 		<>
 			<div
@@ -39,7 +126,6 @@ const AddClubs = () => {
 								method='POST'
 								id='createClubForm'
 								name='createClubForm'
-								action='/api/clubs'
 								encType='multipart/form-data'>
 								<div className='form-group form-floating'>
 									<input
@@ -234,8 +320,9 @@ const AddClubs = () => {
 										justifyContent: 'space-evenly',
 									}}>
 									<button
-										type='button'
+										type='submit'
 										className='btn btn-success'
+										data-bs-dismiss='modal'
 										onClick={handleSubmit}>
 										Create Club
 									</button>
@@ -249,4 +336,4 @@ const AddClubs = () => {
 	)
 }
 
-export default AddClubs
+export default withProtected(AddClubs)

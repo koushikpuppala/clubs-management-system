@@ -4,56 +4,75 @@ import sequelize from '../index'
 export const Clubs = sequelize.define('clubs', {
 	id: {
 		type: DataTypes.UUID,
-		allowNull: false,
-		primaryKey: true,
 		defaultValue: DataTypes.UUIDV4,
+		primaryKey: true,
+		allowNull: false,
+		unique: true,
+		validate: {
+			notEmpty: true,
+		},
 	},
 	name: {
 		type: DataTypes.STRING,
 		allowNull: false,
+		validate: {
+			notEmpty: true,
+		},
 	},
 	coordinators: {
 		type: DataTypes.STRING,
 		allowNull: false,
+		validate: {
+			notEmpty: true,
+		},
 	},
 	about: {
 		type: DataTypes.STRING,
 		allowNull: false,
+		validate: {
+			notEmpty: true,
+		},
 	},
 	description: {
 		type: DataTypes.STRING,
 		allowNull: false,
-	},
-	motto: {
-		type: DataTypes.TEXT,
-		defaultValue: null,
-	},
-	twitter: {
-		type: DataTypes.STRING,
-		defaultValue: null,
-	},
-	facebook: {
-		type: DataTypes.STRING,
-		defaultValue: null,
-	},
-	instagram: {
-		type: DataTypes.STRING,
-		defaultValue: null,
-	},
-	linkedin: {
-		type: DataTypes.STRING,
-		defaultValue: null,
-	},
-	email: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	youtube: {
-		type: DataTypes.STRING,
-		defaultValue: null,
+		validate: {
+			notEmpty: true,
+		},
 	},
 	image: {
 		type: DataTypes.STRING,
 		allowNull: false,
+		validate: {
+			notEmpty: true,
+		},
+	},
+	motto: {
+		type: DataTypes.STRING,
+	},
+	twitter: {
+		type: DataTypes.STRING,
+	},
+	facebook: {
+		type: DataTypes.STRING,
+	},
+	instagram: {
+		type: DataTypes.STRING,
+	},
+	linkedin: {
+		type: DataTypes.STRING,
+	},
+	email: {
+		type: DataTypes.STRING,
+	},
+	youtube: {
+		type: DataTypes.STRING,
+	},
+	events: {
+		type: DataTypes.UUID,
+		references: {
+			model: 'events',
+			key: 'id',
+		},
 	},
 })

@@ -27,23 +27,41 @@ const ProfileNavbar = ({ session, auth }) => {
 									Home
 								</a>
 							</li>
-							<li class='dropdown'>
-								<a href='#events'>
-									<span>Events</span> <i class='bi bi-chevron-down'></i>
-								</a>
-								<ul>
+							{session?.club ? (
+								<>
+									<li class='dropdown'>
+										<a href='#events'>
+											<span>Events</span> <i class='bi bi-chevron-down'></i>
+										</a>
+										<ul>
+											<li>
+												<a
+													data-bs-toggle='modal'
+													data-bs-target='#createEvent'>
+													Create Event
+												</a>
+											</li>
+											<li>
+												<a href='#'>Add Merchandise</a>
+											</li>
+										</ul>
+									</li>
+
 									<li>
-										<a data-bs-toggle='modal' data-bs-target='#createEvent'>
-											Create Event
+										<a
+											className='nav-link'
+											data-bs-toggle='modal'
+											data-bs-target='#editClub'>
+											Edit Clubs
 										</a>
 									</li>
-									<li>
-										<a href='#'>Add Merchandise</a>
-									</li>
-								</ul>
-							</li>
+								</>
+							) : null}
 							<li>
-								<a className='nav-link scrollto' href='#clubs'>
+								<a
+									className='nav-link'
+									data-bs-toggle='modal'
+									data-bs-target='#createClub'>
 									Clubs
 								</a>
 							</li>

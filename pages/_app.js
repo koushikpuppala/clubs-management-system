@@ -9,7 +9,6 @@ import '../styles/style.css'
 import { useEffect } from 'react'
 import { MainAction } from '../actions/Main'
 import { AuthProvider, AuthStateChange } from '../context'
-import { globalAccess } from '../context'
 
 const App = ({ Component, pageProps }) => {
 	useEffect(() => {

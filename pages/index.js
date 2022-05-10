@@ -11,6 +11,7 @@ const Home = ({ auth }) => {
 	const { students, clubs, user, error, login, logout } = auth
 	const [session, setSession] = useState(null)
 	useEffect(() => {
+		console.log(user)
 		user
 			? students.map((student) => {
 					if (student.email === user.email) {
@@ -32,7 +33,6 @@ const Home = ({ auth }) => {
 							data-aos-delay='200'>
 							<h1>Clubs of IIITR</h1>
 							<h2>{session ? 'Welcome ' + session.name : 'Welcome to IIITR'}</h2>
-
 							<div className='d-flex justify-content-center justify-content-lg-start'></div>
 						</div>
 						<div

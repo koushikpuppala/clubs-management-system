@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
-import { ProfileNav } from '../components'
 import Image from 'next/image'
-import { withProtected, withPublic } from '../context'
+import { useEffect, useState } from 'react'
+import { Header, ProfileNav } from '../components'
+import { withProtected } from '../context'
 import Loading from '../components/Loading'
 import AddEvent from '../layout/codesoc/AddEvent'
+import AddClub from '../layout/clubs/AddClub'
+import EditClub from '../layout/clubs/EditClub'
 
 const Profile = ({ auth }) => {
 	const { clubs, students, user } = auth
@@ -19,19 +21,22 @@ const Profile = ({ auth }) => {
 					}
 			  })
 			: setSession(null)
-		session
+		session?.club
 			? clubs.map((club) => {
-					if (club.name.toLowerCase() === session.club.toLowerCase()) {
+					if (club.name.toLowerCase() === session?.club.toLowerCase()) {
 						console.log(club)
 						setClub(club)
 					}
 			  })
 			: setClub(null)
 	}, [user, session, clubs, club])
-	return session && club ? (
+	return session && (session?.club ? club : !null) ? (
 		<>
+			<Header name={session.name} favicon='club.png' />
 			<ProfileNav session={session} auth={auth} />
-			<AddEvent club={club} />
+			{session?.club ? <AddEvent club={club} /> : null}
+			{session?.club ? <EditClub club={club} /> : null}
+			<AddClub />
 			<section id='hero' className='d-flex align-items-center'>
 				<div className='container'>
 					<div

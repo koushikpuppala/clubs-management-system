@@ -90,9 +90,11 @@ export const NavAction = () => {
 	/**
 	 * Scroll with ofset on page load with hash links in the url
 	 */
-	if (window.location.hash) {
-		if (select(window.location.hash)) {
-			scrollto(window.location.hash)
+	window.addEventListener('load', () => {
+		if (window.location.hash) {
+			if (select(window.location.hash)) {
+				scrollto(window.location.hash)
+			}
 		}
-	}
+	})
 }
